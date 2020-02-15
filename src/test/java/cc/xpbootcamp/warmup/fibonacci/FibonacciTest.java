@@ -18,5 +18,12 @@ public class FibonacciTest {
         Integer expected = 1;
         Assert.assertEquals(expected,result);
     }
+    @Test
+    public void should_return_2_when_calculate_given_number_is_3(){
+        Fibonacci fibonacci = new Fibonacci();
+        Integer result = fibonacci.calculate(3);
+        Integer expected = 2;
+        Assert.assertEquals(expected,result);
+    }
 
 }
