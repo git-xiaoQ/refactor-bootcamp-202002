@@ -30,5 +30,10 @@ public class FibonacciTest {
         Fibonacci fibonacci = new Fibonacci();
         Integer result = fibonacci.calculate(51);
     }
+    @Test(expected=Exception.class)
+    public void should_return_0_when_calculate_given_number_is_string()throws Exception{
+        Fibonacci fibonacci = new Fibonacci();
+        Integer result = fibonacci.calculate('a');
+    }
 
 }
