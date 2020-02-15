@@ -27,4 +27,13 @@ public class LineItem {
     double totalAmount() {
         return price * qty;
     }
+    public String getlineItemDetailToString(){
+		String lineItemDetail = "";
+		lineItemDetail +=getDescription()+"\\t";
+		lineItemDetail +=getPrice()+"\\t";
+		lineItemDetail +=getQuantity()+"\\t";
+		lineItemDetail +=totalAmount()+"\\t";
+		lineItemDetail +='\n';
+		return lineItemDetail;
+	}
 }

@@ -21,22 +21,18 @@ public class OrderReceipt {
         output.append("======Printing Orders======\n");
 
         // print customer name and customer address
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        if(order.getCustomerName() != null){
+            output.append(order.getCustomerName());
+        }
+        if(order.getCustomerAddress() != null){
+            output.append(order.getCustomerAddress());
+        }
 
         // prints lineItems
         double totalSalesTax = 0d;
         double totalAmountWithTax = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            output.append(lineItem.getDescription());
-            output.append('\t');
-            output.append(lineItem.getPrice());
-            output.append('\t');
-            output.append(lineItem.getQuantity());
-            output.append('\t');
-            output.append(lineItem.totalAmount());
-            output.append('\n');
-
+            output.append(lineItem.getlineItemDetailToString());
             // calculate sales tax @ rate of 10%
             double salesTax = lineItem.totalAmount() * .10;
             totalSalesTax += salesTax;
