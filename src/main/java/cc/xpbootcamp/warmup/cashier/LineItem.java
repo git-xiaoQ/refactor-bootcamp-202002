@@ -29,7 +29,7 @@ public class LineItem {
     }
 
     public StringBuilder getLineItemDetail(StringBuilder output) {
-    	output.append(getDescription());
+        output.append(getDescription());
         output.append('\t');
         output.append(getPrice());
         output.append('\t');
@@ -40,6 +40,8 @@ public class LineItem {
 
         return output;
     }
-    // calculate sales tax @ rate of 10%
-    public double getSalesTax(double rate){ return totalAmount() * rate; }
+
+    public double getSalesTax(double rate) {
+        return totalAmount() * rate;
+    }
 }

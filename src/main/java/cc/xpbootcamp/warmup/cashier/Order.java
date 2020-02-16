@@ -25,7 +25,7 @@ public class Order {
         return lineItemList;
     }
 
-    private double getTotalSalesTax(double rate){
+    private double getTotalSalesTax(double rate) {
         double totalSalesTax = 0d;
         for (LineItem lineItem : getLineItems()) {
             double salesTax = lineItem.getSalesTax(rate);
@@ -35,27 +35,27 @@ public class Order {
         return totalSalesTax;
     }
 
-    private double getTotalAmountWithTax(double rate){
+    private double getTotalAmountWithTax(double rate) {
         double totalAmountWithTax = 0d;
         for (LineItem lineItem : getLineItems()) {
             double salesTax = lineItem.getSalesTax(rate);
             totalAmountWithTax += lineItem.totalAmount() + salesTax;
         }
-        return  totalAmountWithTax;
+        return totalAmountWithTax;
     }
 
-    public StringBuilder getOrderDetail(StringBuilder output){
+    public StringBuilder getOrderDetail(StringBuilder output) {
         // print customer name and customer address
-        if(getCustomerName() != null){
+        if (getCustomerName() != null) {
             output.append(getCustomerName());
         }
-        if(getCustomerAddress() != null){
+        if (getCustomerAddress() != null) {
             output.append(getCustomerAddress());
         }
 
         // prints lineItems
         for (LineItem lineItem : getLineItems()) {
-            output=lineItem.getLineItemDetail(output);
+            output = lineItem.getLineItemDetail(output);
         }
 
         // prints the state tax
