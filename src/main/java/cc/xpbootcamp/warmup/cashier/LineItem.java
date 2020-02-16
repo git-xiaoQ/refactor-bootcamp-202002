@@ -40,4 +40,6 @@ public class LineItem {
 
         return output;
     }
+    // calculate sales tax @ rate of 10%
+    public double getSalesTax(double rate){ return totalAmount() * rate; }
 }
