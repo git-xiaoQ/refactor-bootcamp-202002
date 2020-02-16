@@ -13,15 +13,56 @@ public class Order {
         this.lineItemList = lineItemList;
     }
 
-    public String getCustomerName() {
+    private String getCustomerName() {
         return customerName;
     }
 
-    public String getCustomerAddress() {
+    private String getCustomerAddress() {
         return customer_address;
     }
 
-    public List<LineItem> getLineItems() {
+    private List<LineItem> getLineItems() {
         return lineItemList;
+    }
+
+    private double getTotalSalesTax(double rate){
+        double totalSalesTax = 0d;
+        for (LineItem lineItem : getLineItems()) {
+            double salesTax = lineItem.getSalesTax(rate);
+            totalSalesTax += salesTax;
+
+        }
+        return totalSalesTax;
+    }
+
+    private double getTotalAmountWithTax(double rate){
+        double totalAmountWithTax = 0d;
+        for (LineItem lineItem : getLineItems()) {
+            double salesTax = lineItem.getSalesTax(rate);
+            totalAmountWithTax += lineItem.totalAmount() + salesTax;
+        }
+        return  totalAmountWithTax;
+    }
+
+    public StringBuilder getOrderDetail(StringBuilder output){
+        // print customer name and customer address
+        if(getCustomerName() != null){
+            output.append(getCustomerName());
+        }
+        if(getCustomerAddress() != null){
+            output.append(getCustomerAddress());
+        }
+
+        // prints lineItems
+        for (LineItem lineItem : getLineItems()) {
+            output=lineItem.getLineItemDetail(output);
+        }
+
+        // prints the state tax
+        output.append("Sales Tax").append('\t').append(getTotalSalesTax(.10));
+
+        // print total amount
+        output.append("Total Amount").append('\t').append(getTotalAmountWithTax(.10));
+        return output;
     }
 }
