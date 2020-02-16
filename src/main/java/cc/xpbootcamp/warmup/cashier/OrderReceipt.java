@@ -14,11 +14,6 @@ public class OrderReceipt {
     }
 
     public String printReceipt() {
-        StringBuilder output = new StringBuilder();
-
-        // print headers
-        output.append("======Printing Orders======\n");
-        output = order.getOrderDetail(output);
-        return output.toString();
+        return order.getOrderDetail();
     }
 }

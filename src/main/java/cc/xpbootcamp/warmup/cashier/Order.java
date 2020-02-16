@@ -44,8 +44,14 @@ public class Order {
         return totalAmountWithTax;
     }
 
-    public StringBuilder getOrderDetail(StringBuilder output) {
+    public String getOrderDetail() {
         // print customer name and customer address
+
+        StringBuilder output = new StringBuilder();
+
+        // print headers
+        output.append("======Printing Orders======\n");
+
         if (getCustomerName() != null) {
             output.append(getCustomerName());
         }
@@ -63,6 +69,6 @@ public class Order {
 
         // print total amount
         output.append("Total Amount").append('\t').append(getTotalAmountWithTax(.10));
-        return output;
+        return output.toString();
     }
 }
