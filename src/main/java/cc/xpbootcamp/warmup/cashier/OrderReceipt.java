@@ -11,16 +11,15 @@ import java.util.Date;
  */
 public class OrderReceipt {
     private Order order;
+    private static final double rate =0.10;
+    private static final double discount =0.98;
 
     OrderReceipt(Order order) {
         this.order = order;
     }
 
     String printReceipt() {
-        StringBuilder output = new StringBuilder();
-        output.append(getTitle());
-        output.append(order.getOrderDetail(.10,0.98));
-        return output.toString();
+        return  getTitle()+order.getOrderDetail(rate,discount);
     }
 
     private String getTitle() {
