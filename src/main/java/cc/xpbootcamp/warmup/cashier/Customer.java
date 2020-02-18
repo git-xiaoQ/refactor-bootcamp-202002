@@ -16,7 +16,7 @@ public class Customer {
         return customer_address;
     }
 
-    String getCustomerDtail(){
+    String getCustomerDetail(){
         StringBuilder output = new StringBuilder();
         if (getCustomerName() != null) {
             output.append(getCustomerName());

@@ -28,7 +28,6 @@ public class Order {
         for (LineItem lineItem : getLineItems()) {
             double salesTax = lineItem.getSalesTax(rate);
             totalSalesTax += salesTax;
-
         }
         return totalSalesTax;
     }
@@ -51,7 +50,7 @@ public class Order {
         StringBuilder output = new StringBuilder();
 
         if (customer != null) {
-            output.append(customer.getCustomerDtail());
+            output.append(customer.getCustomerDetail());
         }
 
         output.append(time.getDate());
