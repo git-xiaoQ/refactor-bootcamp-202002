@@ -59,7 +59,7 @@ public class Order {
         for (LineItem lineItem : getLineItems()) {
             output.append(lineItem.getLineItemDetail());
         }
-        output.append("-------------------------\n");
+        output.append("-----------------------------------\n");
 
         output.append("税额：").append(CashierUtil.formatDigit(getTotalSalesTax(.10))).append('\n');
         if (week.equals("星期三")) {
