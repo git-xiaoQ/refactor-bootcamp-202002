@@ -11,20 +11,13 @@ import java.util.Date;
  */
 public class OrderReceipt {
     private Order order;
-    private Customer customer;
 
-    OrderReceipt(Order order, Customer customer) {
+    OrderReceipt(Order order) {
         this.order = order;
-        this.customer = customer;
     }
-
 
     String printReceipt() {
         StringBuilder output = new StringBuilder();
-
-        if (customer != null) {
-            output.append(customer.getCustomerDtail());
-        }
         output.append(getTitle());
         output.append(order.getOrderDetail());
         return output.toString();

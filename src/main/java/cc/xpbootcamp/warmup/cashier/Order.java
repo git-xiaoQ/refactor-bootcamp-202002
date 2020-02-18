@@ -50,6 +50,10 @@ public class Order {
     String getOrderDetail() {
         StringBuilder output = new StringBuilder();
 
+        if (customer != null) {
+            output.append(customer.getCustomerDtail());
+        }
+
         output.append(time.getDate());
         output.append('，');
         String week = time.getWeek();
