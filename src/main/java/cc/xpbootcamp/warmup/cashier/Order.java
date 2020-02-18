@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Order {
     private Customer customer;
-    List<LineItem> lineItemList;
+    private List<LineItem> lineItemList;
     private Time time;
 
     Order(Customer customer, List<LineItem> lineItemList) {
