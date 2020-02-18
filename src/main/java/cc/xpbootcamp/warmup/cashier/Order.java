@@ -45,11 +45,9 @@ public class Order {
     }
 
     public String getOrderDetail() {
-        // print customer name and customer address
 
         StringBuilder output = new StringBuilder();
 
-        // print headers
         output.append("======Printing Orders======\n");
 
         if (getCustomerName() != null) {
@@ -59,15 +57,12 @@ public class Order {
             output.append(getCustomerAddress());
         }
 
-        // prints lineItems
         for (LineItem lineItem : getLineItems()) {
             output = lineItem.getLineItemDetail(output);
         }
 
-        // prints the state tax
         output.append("Sales Tax").append('\t').append(getTotalSalesTax(.10));
 
-        // print total amount
         output.append("Total Amount").append('\t').append(getTotalAmountWithTax(.10));
         return output.toString();
     }
