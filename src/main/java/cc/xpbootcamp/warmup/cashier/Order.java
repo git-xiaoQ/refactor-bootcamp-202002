@@ -67,7 +67,7 @@ public class Order {
 
         output.append("税额：").append(CashierUtil.formatDigit(getTotalSalesTax(.10))).append('\n');
         if (week.equals("星期三")) {
-            output.append("折扣：").append(CashierUtil.formatDigit(getTotalSalesDsiscount(0.98, 0.10))).append('\n');
+            output.append("折扣：").append(CashierUtil.formatDigit(getTotalSalesDiscount(0.98, 0.10))).append('\n');
             output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountAfterDiscount(.10,0.98)));
         }
         else {
@@ -76,7 +76,7 @@ public class Order {
         return output.toString();
     }
 
-    private double getTotalSalesDsiscount(double discount, double rate) {
+    private double getTotalSalesDiscount(double discount, double rate) {
         return getTotalAmountWithTax(rate) * (1 - discount);
     }
 
