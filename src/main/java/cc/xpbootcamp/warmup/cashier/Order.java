@@ -47,7 +47,7 @@ public class Order {
         return getTotalAmountWithTax(rate) * discount;
     }
 
-    String getOrderDetail() {
+    String getOrderDetail(double rate,double discount) {
         StringBuilder output = new StringBuilder();
 
         if (customer != null) {
@@ -65,18 +65,18 @@ public class Order {
         }
         output.append("-----------------------------------\n");
 
-        output.append("税额：").append(CashierUtil.formatDigit(getTotalSalesTax(.10))).append('\n');
+        output.append("税额：").append(CashierUtil.formatDigit(getTotalSalesTax(rate))).append('\n');
         if (week.equals("星期三")) {
-            output.append("折扣：").append(CashierUtil.formatDigit(getTotalSalesDiscount(0.98, 0.10))).append('\n');
-            output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountAfterDiscount(.10,0.98)));
+            output.append("折扣：").append(CashierUtil.formatDigit(getTotalSalesDiscount(rate,discount ))).append('\n');
+            output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountAfterDiscount(rate,discount)));
         }
         else {
-            output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountWithTax(.10)));
+            output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountWithTax(rate)));
         }
         return output.toString();
     }
 
-    private double getTotalSalesDiscount(double discount, double rate) {
+    private double getTotalSalesDiscount( double rate,double discount) {
         return getTotalAmountWithTax(rate) * (1 - discount);
     }
 

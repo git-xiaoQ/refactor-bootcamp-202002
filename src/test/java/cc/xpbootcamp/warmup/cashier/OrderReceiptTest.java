@@ -26,7 +26,7 @@ class OrderReceiptTest {
 
 
     @Test
-    public void shouldPrintItemNotWithDiscountPriceWhenDateNotTuesday() throws ParseException {
+    void shouldPrintItemNotWithDiscountPriceWhenDateNotTuesday() throws ParseException {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.00, 1));
@@ -48,7 +48,7 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void shouldPrintItemNotWithDiscountPriceWhenDateIsWednesday() throws ParseException {
+    void shouldPrintItemNotWithDiscountPriceWhenDateIsWednesday() throws ParseException {
         List<LineItem> lineItems = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.00, 1));

@@ -19,7 +19,7 @@ public class OrderReceipt {
     String printReceipt() {
         StringBuilder output = new StringBuilder();
         output.append(getTitle());
-        output.append(order.getOrderDetail());
+        output.append(order.getOrderDetail(.10,0.98));
         return output.toString();
     }
 
