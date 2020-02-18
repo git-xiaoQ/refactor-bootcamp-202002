@@ -58,7 +58,6 @@ class OrderReceiptTest {
         Time time = new Time(date);
         OrderReceipt receipt = new OrderReceipt(new Order(null, lineItems, time));
         String result = receipt.printReceipt();
-        System.out.println(result);
         String except = "======老王超市，值得信耐======\n" +
                 "2020年2月19日，星期三\n" +
                 "巧克力, 21.50 x 2, 43.00\n" +
