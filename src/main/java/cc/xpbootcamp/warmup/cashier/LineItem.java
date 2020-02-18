@@ -12,15 +12,15 @@ public class LineItem {
         this.qty = qty;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return desc;
     }
 
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 
-    public int getQuantity() {
+    int getQuantity() {
         return qty;
     }
 
@@ -28,20 +28,20 @@ public class LineItem {
         return price * qty;
     }
 
-    public StringBuilder getLineItemDetail(StringBuilder output) {
+    String getLineItemDetail() {
+        StringBuilder output = new StringBuilder();
         output.append(getDescription());
-        output.append('\t');
-        output.append(getPrice());
-        output.append('\t');
+        output.append(", ");
+        output.append(CashierUtil.formatDigit(getPrice()));
+        output.append(" x ");
         output.append(getQuantity());
-        output.append('\t');
-        output.append(totalAmount());
+        output.append(", ");
+        output.append(CashierUtil.formatDigit(totalAmount()));
         output.append('\n');
-
-        return output;
+        return output.toString();
     }
 
-    public double getSalesTax(double rate) {
+    double getSalesTax(double rate) {
         return totalAmount() * rate;
     }
 }

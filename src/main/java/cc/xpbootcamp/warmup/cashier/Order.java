@@ -3,22 +3,20 @@ package cc.xpbootcamp.warmup.cashier;
 import java.util.List;
 
 public class Order {
-    String customerName;
-    String customer_address;
+    private Customer customer;
     List<LineItem> lineItemList;
+    private Time time;
 
-    public Order(String customerName, String customer_address, List<LineItem> lineItemList) {
-        this.customerName = customerName;
-        this.customer_address = customer_address;
+    Order(Customer customer, List<LineItem> lineItemList) {
+        this.customer = customer;
         this.lineItemList = lineItemList;
+        this.time = new Time();
     }
 
-    private String getCustomerName() {
-        return customerName;
-    }
-
-    private String getCustomerAddress() {
-        return customer_address;
+    Order(Customer customer, List<LineItem> lineItemList,Time time) {
+        this.customer = customer;
+        this.lineItemList = lineItemList;
+        this.time=time;
     }
 
     private List<LineItem> getLineItems() {
@@ -44,26 +42,38 @@ public class Order {
         return totalAmountWithTax;
     }
 
-    public String getOrderDetail() {
+    private double getTotalAmountAfterDiscount(double rate, double discount) {
 
+        return getTotalAmountWithTax(rate) * discount;
+    }
+
+    String getOrderDetail() {
         StringBuilder output = new StringBuilder();
 
-        output.append("======Printing Orders======\n");
-
-        if (getCustomerName() != null) {
-            output.append(getCustomerName());
-        }
-        if (getCustomerAddress() != null) {
-            output.append(getCustomerAddress());
-        }
+        output.append(time.getDate());
+        output.append('，');
+        String week = time.getWeek();
+        output.append(week);
+        output.append('\n');
 
         for (LineItem lineItem : getLineItems()) {
-            output = lineItem.getLineItemDetail(output);
+            output.append(lineItem.getLineItemDetail());
         }
+        output.append("-------------------------\n");
 
-        output.append("Sales Tax").append('\t').append(getTotalSalesTax(.10));
-
-        output.append("Total Amount").append('\t').append(getTotalAmountWithTax(.10));
+        output.append("税额：").append(CashierUtil.formatDigit(getTotalSalesTax(.10))).append('\n');
+        if (week.equals("星期三")) {
+            output.append("折扣：").append(CashierUtil.formatDigit(getTotalSalesDsiscount(0.98, 0.10))).append('\n');
+            output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountAfterDiscount(.10,0.98)));
+        }
+        else {
+            output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountWithTax(.10)));
+        }
         return output.toString();
     }
+
+    private double getTotalSalesDsiscount(double discount, double rate) {
+        return getTotalAmountWithTax(rate) * (1 - discount);
+    }
+
 }
