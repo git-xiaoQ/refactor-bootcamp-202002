@@ -2,18 +2,18 @@ package cc.xpbootcamp.warmup.cashier;
 
 public class Customer {
     private String customerName;
-    private String customer_address;
+    private String customerAddress;
 
     public Customer(String customerName, String customer_address) {
         this.customerName = customerName;
-        this.customer_address = customer_address;
+        this.customerAddress = customer_address;
     }
     private String getCustomerName() {
         return customerName;
     }
 
     private String getCustomerAddress() {
-        return customer_address;
+        return customerAddress;
     }
 
     String getCustomerDetail(){
