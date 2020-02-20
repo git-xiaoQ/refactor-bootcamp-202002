@@ -36,7 +36,7 @@ class OrderReceiptTest {
         Time time = new Time(date);
         OrderReceipt receipt = new OrderReceipt(new Order(null, lineItems, time));
         String result = receipt.printReceipt();
-        String except = "======老王超市，值得信耐======\n" +
+        String except = "======老王超市，值得信赖======\n" +
                 "2020年2月17日，星期一\n" +
                 "巧克力, 21.50 x 2, 43.00\n" +
                 "小白菜, 10.00 x 1, 10.00\n" +
@@ -58,7 +58,7 @@ class OrderReceiptTest {
         Time time = new Time(date);
         OrderReceipt receipt = new OrderReceipt(new Order(null, lineItems, time));
         String result = receipt.printReceipt();
-        String except = "======老王超市，值得信耐======\n" +
+        String except = "======老王超市，值得信赖======\n" +
                 "2020年2月19日，星期三\n" +
                 "巧克力, 21.50 x 2, 43.00\n" +
                 "小白菜, 10.00 x 1, 10.00\n" +

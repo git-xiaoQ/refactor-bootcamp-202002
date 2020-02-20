@@ -1,8 +1,5 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
@@ -11,19 +8,25 @@ import java.util.Date;
  */
 public class OrderReceipt {
     private Order order;
-    private static final double rate =0.10;
-    private static final double discount =0.98;
+    private static final double RATE =0.10d;
+    private static final double DISCOUNT =0.98d;
+    private static final String TITLE = "======老王超市，值得信赖======\n";
 
     OrderReceipt(Order order) {
         this.order = order;
     }
 
     String printReceipt() {
-        return  getTitle()+order.getOrderDetail(rate,discount);
-    }
+        StringBuilder output = new StringBuilder();
+        output.append(TITLE);
+        output = order.getOrderHead(output);
+        output = order.getOrderTime(output);
+        output = order.getOrderItems(output);
 
-    private String getTitle() {
-        return "======老王超市，值得信耐======\n";
-    }
+        output.append("-----------------------------------\n");
 
+        output = order.getOrderFooter(output,RATE,DISCOUNT);
+
+        return output.toString();
+    }
 }

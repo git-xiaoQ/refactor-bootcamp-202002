@@ -46,36 +46,45 @@ public class Order {
         return getTotalAmountWithTax(rate) * discount;
     }
 
-    String getOrderDetail(double rate, double discount) {
-        StringBuilder output = new StringBuilder();
+    private double getTotalSalesDiscount(double rate, double discount) {
+        return getTotalAmountWithTax(rate) * (1 - discount);
+    }
 
-        if (customer != null) {
-            output.append(customer.getCustomerDetail());
-        }
+    private boolean isDiscount(){
+        return time.getWeek().equals("星期三");
+    }
 
-        output.append(time.getDate());
-        output.append('，');
-        String week = time.getWeek();
-        output.append(week);
-        output.append('\n');
-
-        for (LineItem lineItem : getLineItems()) {
-            output.append(lineItem.getLineItemDetail());
-        }
-        output.append("-----------------------------------\n");
-
+    StringBuilder getOrderFooter(StringBuilder output,double rate,double discount) {
         output.append("税额：").append(CashierUtil.formatDigit(getTotalSalesTax(rate))).append('\n');
-        if (week.equals("星期三")) {
+        if (isDiscount()) {
             output.append("折扣：").append(CashierUtil.formatDigit(getTotalSalesDiscount(rate, discount))).append('\n');
             output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountAfterDiscount(rate, discount)));
         } else {
             output.append("总价：").append(CashierUtil.formatDigit(getTotalAmountWithTax(rate)));
         }
-        return output.toString();
+        return output;
     }
 
-    private double getTotalSalesDiscount(double rate, double discount) {
-        return getTotalAmountWithTax(rate) * (1 - discount);
+    StringBuilder getOrderItems(StringBuilder output){
+        for (LineItem lineItem : getLineItems()) {
+            output.append(lineItem.getLineItemDetail());
+        }
+        return output;
+    }
+
+    StringBuilder getOrderTime(StringBuilder output){
+        output.append(time.getDate());
+        output.append('，');
+        output.append(time.getWeek());
+        output.append('\n');
+        return output;
+    }
+
+    StringBuilder getOrderHead(StringBuilder output){
+        if (customer != null) {
+            output.append(customer.getCustomerDetail());
+        }
+        return output;
     }
 
 }
