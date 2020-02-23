@@ -17,16 +17,50 @@ public class OrderReceipt {
     }
 
     String printReceipt() {
+        String output = TITLE +
+                getOrderHead() +
+                getOrderTime() +
+                getOrderItems() +
+                "-----------------------------------\n" +
+                getOrderSales(RATE, DISCOUNT);
+        return output;
+    }
+
+    String getOrderHead(){
+        Customer customer = order.getCustomer();
+        if (customer != null) {
+            return customer.getCustomerDetail();
+        }
+        return "";
+    }
+
+    String getOrderTime(){
         StringBuilder output = new StringBuilder();
-        output.append(TITLE);
-        output = order.getOrderHead(output);
-        output = order.getOrderTime(output);
-        output = order.getOrderItems(output);
+        Time time  = order.getTime();
+        output.append(time.getDate());
+        output.append('，');
+        output.append(time.getWeek());
+        output.append('\n');
+        return output.toString();
+    }
 
-        output.append("-----------------------------------\n");
+    String getOrderItems(){
+        StringBuilder output = new StringBuilder();
+        for (LineItem lineItem : order.getLineItems()) {
+            output.append(lineItem.getLineItemDetail());
+        }
+        return output.toString();
+    }
 
-        output = order.getOrderFooter(output,RATE,DISCOUNT);
-
+    String getOrderSales(double rate,double discount) {
+        StringBuilder output = new StringBuilder();
+        output.append("税额：").append(CashierUtil.formatDigit(order.getTotalSalesTax(rate))).append('\n');
+        if (order.isDiscount()) {
+            output.append("折扣：").append(CashierUtil.formatDigit(order.getTotalSalesDiscount(rate, discount))).append('\n');
+            output.append("总价：").append(CashierUtil.formatDigit(order.getTotalAmountAfterDiscount(rate, discount)));
+        } else {
+            output.append("总价：").append(CashierUtil.formatDigit(order.getTotalAmountWithTax(rate)));
+        }
         return output.toString();
     }
 }
